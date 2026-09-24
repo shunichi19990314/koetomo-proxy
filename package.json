@@ -1,0 +1,17 @@
+{
+  "name": "koetomo-proxy",
+  "version": "1.0.0",
+  "description": "本家「声とも」(koetomo.fun) を Render 経由で開くフルリバースプロキシ",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

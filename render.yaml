@@ -1,0 +1,19 @@
+# Render Blueprint
+# ダッシュボードの「New +」→「Blueprint」→ このリポジトリを選択するだけで
+# https://koetomo-proxy.onrender.com が完成します。
+services:
+  - type: web
+    name: koetomo-proxy          # → https://koetomo-proxy.onrender.com
+    runtime: node
+    plan: free
+    region: singapore            # 声とも(AWS 東京)に地理的に最も近い Render リージョン
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /__health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.1
+      - key: UPSTREAM
+        value: https://koetomo.fun
+      - key: TZ
+        value: Asia/Tokyo
