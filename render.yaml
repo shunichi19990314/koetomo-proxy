@@ -1,17 +1,6 @@
 # Render Blueprint
 # ダッシュボードの「New +」→「Blueprint」→ このリポジトリを選択するだけで
-#   https://koetomo-proxy.onrender.com
-# が作成されます(Web Service から手動で作る場合の設定値は README.md 参照)。
-#
-# 【重要】Apply するときに TUNNEL_TOKEN の値を聞かれます(sync: false)。
-#   32文字程度のランダム文字列を入れてください。生成コマンド例:
-#     node -e 'console.log(require("crypto").randomBytes(18).toString("base64url"))'
-#     openssl rand -hex 16
-#   同じ値を「日本のマシン」にも渡します(relay/setup-reverse-tunnel.sh の第2引数)。
-#
-#   TUNNEL_TOKEN を設定しないと日本出口が無いため、声とも側で必ず 403 になります
-#   (声ともは日本国外IPを一律拒否 / Render に日本リージョンは無い)。
-
+# https://koetomo-proxy.onrender.com が完成します。
 services:
   - type: web
     name: koetomo-proxy          # → https://koetomo-proxy.onrender.com
@@ -28,14 +17,3 @@ services:
         value: https://koetomo.fun
       - key: TZ
         value: Asia/Tokyo
-      # 日本のマシン(リバーストンネル)を受け入れるための共有シークレット。
-      # これを設定すると、server.js 内蔵のハブ(/__tunnel)が有効になります。
-      - key: TUNNEL_TOKEN
-        sync: false
-      # ハブが受け付ける接続先(踏み台化防止)。変更不要です
-      - key: RELAY_ALLOW
-        value: koetomo.fun,ipinfo.io,ipwho.is,api.ipify.org
-
-# 補足: 待ち合わせサーバ(ハブ)は server.js に内蔵されているため、
-# 別サービスは不要です。単独で立てたい場合は `node tunnel/hub.js` を
-# 別の Web Service の起動コマンドに指定できます(上級者向け・任意)。

@@ -9,15 +9,9 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node test/smoke.js && node test/chain-smoke.js && node test/tunnel-smoke.js && node test/pool-smoke.js && node test/multihost-smoke.js",
-    "test:tls": "node test/tunnel-tls-smoke.js",
-    "test:live": "node tools/live-multihost-check.js",
-    "hub": "node tunnel/hub.js",
-    "scan:jp": "node tools/find-jp-proxy.js",
-    "verify:jp": "node tools/verify-jp-proxy.js"
+    "test": "node test/smoke.js"
   },
   "dependencies": {
-    "undici": "^6.28.1",
     "ws": "^8.18.0"
   }
 }
