@@ -59,11 +59,26 @@ Oracle はインスタンス内の iptables とは別に、**クラウド側の�
 
 ## 手順4: サーバに接続してセットアップスクリプトを実行
 
-```bash
-# PC から(ダウンロードした秘密鍵を使用。ユーザー名は Ubuntu イメージでは ubuntu)
-ssh -i ~/Downloads/ssh-key-*.key ubuntu@<インスタンスのパブリックIP>
+**方法A: PCからSSH**
 
-# サーバ上で:
+```bash
+# ダウンロードした秘密鍵を使用。ユーザー名は Ubuntu イメージでは ubuntu
+ssh -i ~/Downloads/ssh-key-*.key ubuntu@<インスタンスのパブリックIP>
+```
+
+**方法B: ブラウザ完結(Oracle Cloud Shell)— PCに何も入れたくない場合**
+
+1. Oracle Cloud コンソール右上の **クラウド・シェル( >_ アイコン )** を開く(ブラウザ内ターミナル、認証済み)
+2. コンソールの「SSHキーのダウンロード」で保存した**秘密鍵をクラウド・シェルにアップロード**(ドラッグ&ドロップ)してから:
+
+```bash
+chmod 600 ssh-key-*.key
+ssh -i ssh-key-*.key ubuntu@<インスタンスのパブリックIP>
+```
+
+**どちらの方法でも、サーバに入ったら:**
+
+```bash
 git clone https://github.com/shunichi19990314/koetomo-proxy.git
 cd koetomo-proxy/relay
 bash setup-oracle.sh
