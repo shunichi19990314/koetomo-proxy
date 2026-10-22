@@ -181,7 +181,7 @@ function rawRelayRequest({ path: p, auth }) {
       ok("/__status 判定 ✅", j.verdict && j.verdict.ok === true, JSON.stringify(j.verdict));
       const r2 = await fetch(PROXY + "/__status", { headers: { accept: "text/html" } });
       const b2 = await r2.text();
-      ok("/__status HTML にリレー表示", /リレー経由|日本出口プロキシ経由/.test(b2) && b2.includes(RELAY_IP), b2.match(/経路<\/th><td>[^<]*/) ? b2.match(/経路<\/th><td>[^<]*/)[0] : "");
+      ok("/__status HTML にリレー表示", b2.includes("リレー経由") && b2.includes(RELAY_IP));
     }
   } catch (err) {
     failed++;
